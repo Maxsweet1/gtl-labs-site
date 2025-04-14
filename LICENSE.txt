@@ -1,0 +1,15 @@
+Business Source License 1.1
+
+Licensor: GTL Labs (Greg Thompson-Lowe)
+
+Licensed Work: All source code in this repository
+
+Change Date: January 1, 2027
+
+Change License: MIT
+
+Use Limitation: This code may not be used, directly or indirectly, for any commercial purpose without written permission from the Licensor. Educational, non-commercial, and research uses are permitted.
+
+Additional Terms: Forking or repackaging of this code for resale or SaaS is prohibited without approval. For commercial licensing, contact gtlowe@hotmail.com.
+
+Full license text available at: https://mariadb.com/bsl11
