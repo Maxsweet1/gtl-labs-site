@@ -1,107 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GTL Labs | Built for Real Work</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #222;
-      line-height: 1.6;
-    }
-    header {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    .section {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    h2 {
-      color: #1a1a1a;
-    }
-    .cta-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #1a1a1a;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 1rem;
-    }
-    footer {
-      background-color: #ddd;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-    }
-    img.preview {
-      width: 100%;
-      max-width: 700px;
-      display: block;
-      margin: 1rem auto;
-      border-radius: 10px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>GTL Labs</h1>
-    <p>Milestone-Based Escrow for Real-World Businesses</p>
-    <p><em>Built by Greg Thompson-Lowe</em></p>
-  </header>
+import React from 'react';
+import Head from 'next/head';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
-  <div class="section">
-    <h2>What I Built</h2>
-    <p>
-      I run a small fruit export business called Nutridos Foods. I needed a way to pay my laborer in Colombia only after work was actually completed—fruit pickup, dehydration, and shipment. So I built <strong>ProofHarvest</strong>: a blockchain-based escrow system that only releases funds when milestones are verified.
-    </p>
-    <img class="preview" src="images/case_study_photo.jpg" alt="Proof of milestone work" />
-  </div>
+export default function GTLLabsPage() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-800">
+      <Head>
+        <title>GTL Labs | Ethical Blockchain Consulting</title>
+        <meta name="description" content="Smart contract development and real-world blockchain solutions by GTL Labs." />
+      </Head>
 
-  <div class="section">
-    <h2>How It Works</h2>
-    <p>
-      - You agree on steps (milestones) like pickup, prep, shipment<br>
-      - Worker sends photo proof for each step<br>
-      - Funds are held in smart contract escrow<br>
-      - You or a verifier clicks to release payment when work is done
-    </p>
-  </div>
+      <header className="bg-gray-900 text-white py-10 text-center">
+        <h1 className="text-3xl font-bold">GTL Labs</h1>
+        <p className="text-lg">Smart Contracts for the Real World</p>
+        <p className="italic">We Build Tools, Not Tokens</p>
+      </header>
 
-  <div class="section">
-    <h2>See the Full Case Study</h2>
-    <p>
-      Want to see how this works in real life? Download the PDF case study showing how ProofHarvest helped me coordinate cross-border labor, protect funds, and guarantee results.
-    </p>
-    <a href="ProofHarvest_Case_Study.pdf" class="cta-button" download>📄 Download Case Study</a>
-  </div>
+      <main className="max-w-3xl mx-auto px-4 py-12 space-y-12">
+        <section>
+          <Card>
+            <CardHeader>About</CardHeader>
+            <CardContent>
+              <p>
+                GTL Labs is a blockchain consulting and smart contract development studio founded by Greg Thompson-Lowe. We specialize in building practical, trustless systems for real-world use cases—particularly in agriculture, decentralized finance, and milestone-based payments.
+              </p>
+              <p className="mt-4">
+                With 25 years of logistics experience and hands-on Solidity development, GTL Labs bridges the gap between on-chain technology and off-chain outcomes.
+              </p>
+              <p className="italic mt-2">Built by technologists who care about trust more than buzzwords.</p>
+              <p className="italic mt-1">We make real world tools, built to work.</p>
+            </CardContent>
+          </Card>
+        </section>
 
-  <div class="section">
-    <h2>Want This for Your Business?</h2>
-    <p>
-      I help small businesses, NGOs, and co-ops deploy milestone-based payment systems using smart contracts. If you're sending money internationally and want proof before payment, let’s talk.
-    </p>
-    <p>
-      📧 <strong>Email:</strong> <a href="mailto:gtlowe@hotmail.com">gtlowe@hotmail.com</a><br>
-      🔗 <strong>GitHub:</strong> <a href="https://github.com/Maxsweet1" target="_blank">github.com/Maxsweet1</a>
-    </p>
-  </div>
+        <section>
+          <Card>
+            <CardHeader>Services</CardHeader>
+            <CardContent>
+              <ul className="list-disc list-inside space-y-1">
+                <li>🌾 Real-World Tools for Ethical Supply Chains</li>
+                <li>🔐 Smart Contract Architecture & Audit Support</li>
+                <li>🧠 Strategy & Documentation for Grant Funding</li>
+                <li>📊 DeFi Integration & Milestone Payment Models</li>
+                <li>🪙 Tokenization of Agricultural & Physical Assets</li>
+                <li>🧭 Workshops and onboarding for impact-first teams entering Web3</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
 
-  <footer>
-    &copy; 2025 GTL Labs | Made by Greg Thompson-Lowe
-  </footer>
-</body>
-</html>
+        <section>
+          <Card>
+            <CardHeader>Featured Project: ProofHarvest</CardHeader>
+            <CardContent>
+              <p>
+                A decentralized milestone escrow platform for tokenizing crop yields. ProofHarvest is built for Colombian farmers transitioning from illicit agriculture, providing them access to capital, smart contract-based payment security, and verifiable delivery tracking.
+              </p>
+              <div className="mt-4">
+                <a
+                  href="https://github.com/Maxsweet1/Grepository"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700"
+                >
+                  View Project on GitHub
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section>
+          <Card>
+            <CardHeader>Contact</CardHeader>
+            <CardContent>
+              <p>
+                Interested in working together? GTL Labs is available for consulting, pilot projects, and collaboration.
+              </p>
+              <p className="mt-4">
+                📧 <strong>Email:</strong> <a href="mailto:gtlowe@hotmail.com">gtlowe@hotmail.com</a><br />
+                🔗 <strong>GitHub:</strong> <a href="https://github.com/Maxsweet1/Grepository" target="_blank" rel="noopener noreferrer">github.com/Maxsweet1</a>
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+      </main>
+
+      <footer className="text-center py-6 bg-gray-800 text-gray-100 text-sm">
+        &copy; 2025 GTL Labs. Built by Greg Thompson-Lowe.
+      </footer>
+    </div>
+  );
+}
+
 
