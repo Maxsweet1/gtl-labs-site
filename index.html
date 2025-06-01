@@ -3,396 +3,762 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GTL Labs | Ethical Blockchain Consulting</title>
-    <meta name="description" content="Smart contract development and real-world blockchain solutions by GTL Labs." />
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>GTL Labs - Secure Escrow for Real-World Trade</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-                sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
         }
-        
-        /* Custom card styles to match shadcn/ui */
-        .card {
-            background: white;
-            border-radius: 0.5rem;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .card-header {
-            padding: 1.5rem 1.5rem 0 1.5rem;
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
-        
-        .card-content {
-            padding: 1.5rem;
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        .card-header h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin: 0;
-            color: #111827;
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #228B22;
         }
-        
-        /* Smooth animations */
-        .card {
-            transition: all 0.2s ease-in-out;
-        }
-        
-        .card:hover {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transform: translateY(-1px);
-        }
-        
-        /* Link styling */
-        a {
-            color: #2563eb;
+
+        .nav-links a {
+            margin-left: 2rem;
             text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
         }
-        
-        a:hover {
-            text-decoration: underline;
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
         }
-        
-        /* Button styling */
-        .btn-primary {
-            background-color: #111827;
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Demo Buttons */
+        .demo-section {
+            background: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .demo-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .demo-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .demo-card h3 {
+            color: #228B22;
+            margin-bottom: 1rem;
+        }
+
+        .demo-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .demo-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #228B22;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .demo-btn:hover {
+            background: #1e7b1e;
+        }
+
+        .demo-btn.advanced {
+            background: #8B4513;
+        }
+
+        .demo-btn.advanced:hover {
+            background: #7a3e12;
+        }
+
+        /* Services Section */
+        .services {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card.popular {
+            border: 3px solid #228B22;
+            transform: scale(1.05);
+        }
+
+        .service-card.enterprise {
+            border: 3px solid #8B4513;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #228B22;
             color: white;
             padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .enterprise-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .service-features li::before {
+            content: "✓ ";
+            color: #228B22;
+            font-weight: bold;
+        }
+
+        /* Case Study Section */
+        .case-study {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .case-study h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .case-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .case-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-benefits {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .case-benefits li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .case-benefits li::before {
+            content: "🚀";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .comparison h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .gtl-column {
+            background: rgba(34, 139, 34, 0.05);
+            font-weight: bold;
+            color: #333;
+        }
+
+        .check {
+            color: #228B22;
+            font-size: 1.5rem;
+        }
+
+        .cross {
+            color: #f44336;
+            font-size: 1.5rem;
+        }
+
+        .slow {
+            color: #ff9800;
+            font-size: 1.5rem;
+        }
+
+        /* Security Section */
+        .security {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+
+        .security h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .security-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .security-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
             display: inline-block;
-            transition: background-color 0.2s ease-in-out;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
         }
-        
+
+        .btn-primary {
+            background: white;
+            color: #228B22;
+        }
+
         .btn-primary:hover {
-            background-color: #374151;
-            text-decoration: none;
+            background: #f0f0f0;
+            transform: translateY(-2px);
         }
-        
-        /* Responsive design */
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #228B22;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .case-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons, .demo-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">GTL Labs</div>
+            <div class="nav-links">
+                <a onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">Services</a>
+                <a onclick="document.getElementById('demos').scrollIntoView({behavior: 'smooth'})">Demos</a>
+                <a onclick="document.getElementById('case-study').scrollIntoView({behavior: 'smooth'})">Case Study</a>
+                <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact</a>
+            </div>
+        </nav>
+    </header>
 
-    <script type="text/babel">
-        const { useState } = React;
-
-        // Card Components
-        const Card = ({ children, className = "" }) => {
-            return (
-                <div className={`card ${className}`}>
-                    {children}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Secure, Managed Escrow for Real-World Trade</h1>
+            <p>We simplify milestone-based payments using blockchain—without making you learn blockchain.</p>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <strong>🛡️ Payment Protection</strong><br>
+                    Funds secured until delivery
                 </div>
-            );
-        };
-
-        const CardHeader = ({ children }) => {
-            return (
-                <div className="card-header">
-                    <h3>{children}</h3>
+                <div class="hero-feature">
+                    <strong>⚡ Instant Releases</strong><br>
+                    Click button, release payment
                 </div>
-            );
-        };
-
-        const CardContent = ({ children }) => {
-            return (
-                <div className="card-content">
-                    {children}
+                <div class="hero-feature">
+                    <strong>🌍 Global Scale</strong><br>
+                    No Remitly, no delays
                 </div>
-            );
-        };
+            </div>
+        </div>
+    </section>
 
-        // Main GTL Labs Component
-        const GTLLabsPage = () => {
-            return (
-                <div className="min-h-screen bg-gray-50 text-gray-800">
-                    {/* Header */}
-                    <header className="bg-gray-900 text-white py-16 text-center">
-                        <div className="max-w-4xl mx-auto px-4">
-                            <h1 className="text-5xl font-bold mb-4">GTL Labs</h1>
-                            <p className="text-xl mb-2">Smart Contracts for the Real World</p>
-                            <p className="text-lg italic text-gray-300">We Build Tools, Not Tokens</p>
-                        </div>
-                    </header>
-
-                    {/* Main Content */}
-                    <main className="max-w-4xl mx-auto px-4 py-12 space-y-8">
-                        {/* About Section */}
-                        <section>
-                            <Card>
-                                <CardHeader>About GTL Labs</CardHeader>
-                                <CardContent>
-                                    <div className="space-y-4 text-gray-700 leading-relaxed">
-                                        <p>
-                                            GTL Labs is a blockchain consulting and smart contract development studio founded by Greg Thompson-Lowe. We specialize in building practical, trustless systems for real-world use cases—particularly in agriculture, decentralized finance, and milestone-based payments.
-                                        </p>
-                                        <p>
-                                            With 25 years of logistics experience and hands-on Solidity development, GTL Labs bridges the gap between on-chain technology and off-chain outcomes.
-                                        </p>
-                                        <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 mt-6">
-                                            <p className="italic text-blue-800 font-medium">Built by technologists who care about trust more than buzzwords.</p>
-                                            <p className="italic text-blue-700 mt-1">We make real world tools, built to work.</p>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </section>
-
-                        {/* Services Section */}
-                        <section>
-                            <Card>
-                                <CardHeader>Our Services</CardHeader>
-                                <CardContent>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div className="space-y-4">
-                                            <div className="flex items-start space-x-3">
-                                                <span className="text-2xl">🌾</span>
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-900">Real-World Supply Chain Tools</h4>
-                                                    <p className="text-sm text-gray-600">Ethical blockchain solutions for agricultural and physical asset tracking</p>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="flex items-start space-x-3">
-                                                <span className="text-2xl">🔐</span>
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-900">Smart Contract Development</h4>
-                                                    <p className="text-sm text-gray-600">Architecture, development, and audit support for production systems</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-start space-x-3">
-                                                <span className="text-2xl">🧠</span>
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-900">Grant Strategy & Documentation</h4>
-                                                    <p className="text-sm text-gray-600">Technical documentation and funding strategy for Web3 projects</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <div className="flex items-start space-x-3">
-                                                <span className="text-2xl">📊</span>
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-900">DeFi Integration</h4>
-                                                    <p className="text-sm text-gray-600">Milestone payment models and decentralized finance solutions</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-start space-x-3">
-                                                <span className="text-2xl">🪙</span>
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-900">Asset Tokenization</h4>
-                                                    <p className="text-sm text-gray-600">Tokenization strategies for agricultural and physical assets</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-start space-x-3">
-                                                <span className="text-2xl">🧭</span>
-                                                <div>
-                                                    <h4 className="font-semibold text-gray-900">Web3 Workshops</h4>
-                                                    <p className="text-sm text-gray-600">Training and onboarding for impact-first teams entering blockchain</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </section>
-
-                        {/* Featured Project */}
-                        <section>
-                            <Card>
-                                <CardHeader>Featured Project: ProofHarvest</CardHeader>
-                                <CardContent>
-                                    <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg border">
-                                        <div className="flex items-start space-x-4">
-                                            <div className="text-4xl">🌱</div>
-                                            <div className="flex-1">
-                                                <h4 className="text-xl font-bold text-gray-900 mb-3">Decentralized Agricultural Escrow Platform</h4>
-                                                <p className="text-gray-700 mb-4 leading-relaxed">
-                                                    A milestone-based escrow platform for tokenizing crop yields. ProofHarvest is built for Colombian farmers transitioning from illicit agriculture, providing them access to capital, smart contract-based payment security, and verifiable delivery tracking.
-                                                </p>
-                                                
-                                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                                    <div className="text-center">
-                                                        <div className="text-2xl font-bold text-green-600">🔐</div>
-                                                        <div className="text-sm font-medium">Smart Contract Security</div>
-                                                    </div>
-                                                    <div className="text-center">
-                                                        <div className="text-2xl font-bold text-blue-600">📊</div>
-                                                        <div className="text-sm font-medium">Milestone Payments</div>
-                                                    </div>
-                                                    <div className="text-center">
-                                                        <div className="text-2xl font-bold text-purple-600">🌾</div>
-                                                        <div className="text-sm font-medium">Crop Tokenization</div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="flex flex-col sm:flex-row gap-3">
-                                                    <a
-                                                        href="https://maxsweet1.github.io/Grepository/"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="btn-primary text-center"
-                                                    >
-                                                        🚀 Try Live Demo
-                                                    </a>
-                                                    <a
-                                                        href="https://github.com/Maxsweet1/Grepository"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-50 text-center transition-colors"
-                                                    >
-                                                        📂 View Source Code
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </section>
-
-                        {/* Process Section */}
-                        <section>
-                            <Card>
-                                <CardHeader>Our Development Process</CardHeader>
-                                <CardContent>
-                                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                                        <div className="text-center">
-                                            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                                <span className="text-xl">🔍</span>
-                                            </div>
-                                            <h4 className="font-semibold text-gray-900 mb-2">Discovery</h4>
-                                            <p className="text-sm text-gray-600">Understanding your real-world problem and technical requirements</p>
-                                        </div>
-                                        
-                                        <div className="text-center">
-                                            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                                <span className="text-xl">🏗️</span>
-                                            </div>
-                                            <h4 className="font-semibold text-gray-900 mb-2">Architecture</h4>
-                                            <p className="text-sm text-gray-600">Designing smart contract systems that bridge on-chain and off-chain</p>
-                                        </div>
-                                        
-                                        <div className="text-center">
-                                            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                                <span className="text-xl">⚡</span>
-                                            </div>
-                                            <h4 className="font-semibold text-gray-900 mb-2">Development</h4>
-                                            <p className="text-sm text-gray-600">Building and testing production-ready smart contracts</p>
-                                        </div>
-                                        
-                                        <div className="text-center">
-                                            <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                                <span className="text-xl">🚀</span>
-                                            </div>
-                                            <h4 className="font-semibold text-gray-900 mb-2">Deployment</h4>
-                                            <p className="text-sm text-gray-600">Secure deployment with ongoing support and documentation</p>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </section>
-
-                        {/* Contact Section */}
-                        <section>
-                            <Card>
-                                <CardHeader>Ready to Build Something Real?</CardHeader>
-                                <CardContent>
-                                    <div className="bg-gray-50 p-6 rounded-lg">
-                                        <p className="text-gray-700 mb-6 text-lg">
-                                            GTL Labs is available for consulting, pilot projects, and collaboration. Let's discuss how blockchain technology can solve your real-world challenges.
-                                        </p>
-                                        
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div>
-                                                <h4 className="font-semibold text-gray-900 mb-3">Get in Touch</h4>
-                                                <div className="space-y-2">
-                                                    <div className="flex items-center space-x-3">
-                                                        <span className="text-xl">📧</span>
-                                                        <div>
-                                                            <span className="font-medium">Email:</span>
-                                                            <a href="mailto:gtlowe@hotmail.com" className="ml-2 text-blue-600 hover:text-blue-800">
-                                                                gtlowe@hotmail.com
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="flex items-center space-x-3">
-                                                        <span className="text-xl">🔗</span>
-                                                        <div>
-                                                            <span className="font-medium">GitHub:</span>
-                                                            <a 
-                                                                href="https://github.com/Maxsweet1" 
-                                                                target="_blank" 
-                                                                rel="noopener noreferrer"
-                                                                className="ml-2 text-blue-600 hover:text-blue-800"
-                                                            >
-                                                                github.com/Maxsweet1
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div>
-                                                <h4 className="font-semibold text-gray-900 mb-3">What We're Looking For</h4>
-                                                <ul className="text-sm text-gray-600 space-y-1">
-                                                    <li>• Impact-driven projects with real-world applications</li>
-                                                    <li>• Agricultural and supply chain innovation</li>
-                                                    <li>• Teams serious about solving actual problems</li>
-                                                    <li>• Long-term partnerships and collaboration</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </section>
-                    </main>
-
-                    {/* Footer */}
-                    <footer className="bg-gray-900 text-gray-100 py-8 mt-16">
-                        <div className="max-w-4xl mx-auto px-4 text-center">
-                            <div className="mb-4">
-                                <h3 className="text-xl font-bold text-white mb-2">GTL Labs</h3>
-                                <p className="text-gray-400">Building trust through technology</p>
-                            </div>
-                            <div className="border-t border-gray-700 pt-4">
-                                <p className="text-sm text-gray-500">
-                                    &copy; 2025 GTL Labs. Built by Greg Thompson-Lowe.
-                                </p>
-                            </div>
-                        </div>
-                    </footer>
+    <!-- Demo Section -->
+    <section id="demos" class="demo-section">
+        <div class="container">
+            <h2>See Our Solutions in Action</h2>
+            <p>Choose the demo that matches your needs:</p>
+            <div class="demo-buttons">
+                <div class="demo-card">
+                    <h3>🌱 Simple Managed Escrow</h3>
+                    <p>Perfect for small businesses wanting hands-off escrow management. We handle everything—you just click to release payments.</p>
+                    <a href="https://maxsweet1.github.io/simple-escrow-demo/" class="demo-btn" target="_blank">Try Simple Demo</a>
                 </div>
-            );
-        };
+                <div class="demo-card">
+                    <h3>🚀 Advanced Workflows</h3>
+                    <p>Interactive buyer/seller/verifier systems with custom business logic for enterprises requiring complex escrow workflows.</p>
+                    <a href="https://maxsweet1.github.io/proofharvest-demo/" class="demo-btn advanced" target="_blank">Try Advanced Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const App = () => {
-            return <GTLLabsPage />;
-        };
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Escrow as a Service</h2>
+            <div class="service-grid">
+                <!-- Tier 1 -->
+                <div class="service-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="service-icon">🌱</div>
+                    <h3>Managed Escrow</h3>
+                    <div class="price">$500 + 2%</div>
+                    <ul class="service-features">
+                        <li>We handle everything</li>
+                        <li>Simple milestone tracking</li>
+                        <li>24-hour setup</li>
+                        <li>Email-only management</li>
+                        <li>Perfect for first-time users</li>
+                        <li>Uses SimpleEscrow demo system</li>
+                    </ul>
+                </div>
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
+                <!-- Tier 2 -->
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Custom Workflow</h3>
+                    <div class="price">$2,000 + 1.5%</div>
+                    <ul class="service-features">
+                        <li>Interactive buyer/seller dashboards</li>
+                        <li>Multi-party verification</li>
+                        <li>Custom milestone logic</li>
+                        <li>Automated notifications</li>
+                        <li>Your branding included</li>
+                        <li>Based on ProofHarvest system</li>
+                    </ul>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="service-card enterprise">
+                    <div class="enterprise-badge">Enterprise</div>
+                    <div class="service-icon">🏢</div>
+                    <h3>White-Label Platform</h3>
+                    <div class="price">$10,000+</div>
+                    <ul class="service-features">
+                        <li>Complete platform ownership</li>
+                        <li>Enterprise integrations</li>
+                        <li>Custom business logic</li>
+                        <li>Ongoing support included</li>
+                        <li>Multi-region deployment</li>
+                        <li>Full development team</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section id="case-study" class="case-study">
+        <div class="container">
+            <h2>Real Business, Real Results</h2>
+            <div class="case-content">
+                <div class="case-text">
+                    <h3>Nutridos Food - USA/Colombia</h3>
+                    <p>I built this escrow system for my own dehydrated fruit export business. As a US company working with Colombian suppliers, instead of using expensive apps like Remitly to pay international partners, I can now release milestone payments instantly with the click of a button.</p>
+                    
+                    <ul class="case-benefits">
+                        <li><strong>Faster Payments:</strong> Instant releases vs 3-5 day transfers</li>
+                        <li><strong>Lower Costs:</strong> 1.5% vs 5-8% remittance fees</li>
+                        <li><strong>Better Control:</strong> Pay only when milestones are met</li>
+                        <li><strong>Built to Scale:</strong> Ready to expand to other countries</li>
+                    </ul>
+                </div>
+                <div class="case-visual">
+                    <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; text-align: center;">
+                        <h4 style="margin-bottom: 1rem;">🥭 US-Colombia Fruit Supply Chain</h4>
+                        <div style="margin-bottom: 1rem;">🇨🇴 Partner Processes Fruit → 🚚 Ships to US Warehouse → 💰 Instant Payment Release</div>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">"If we can do this with suppliers in Colombia from the US, imagine what we can do for you."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison">
+        <div class="container">
+            <h2>How We Compare</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="gtl-column">GTL Labs Escrow</th>
+                            <th>Traditional Bank Escrow</th>
+                            <th>No Escrow (Prayer Method)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Setup Time</strong></td>
+                            <td class="gtl-column">24 hours <span class="check">✓</span></td>
+                            <td>2-4 weeks <span class="slow">⏰</span></td>
+                            <td>0 minutes <span class="cross">❌</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>International Payments</strong></td>
+                            <td class="gtl-column">Instant <span class="check">✓</span></td>
+                            <td>3-5 days <span class="slow">⏰</span></td>
+                            <td>Pray they pay <span class="cross">❌</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fees</strong></td>
+                            <td class="gtl-column">1.5-2% <span class="check">✓</span></td>
+                            <td>5-8% <span class="cross">❌</span></td>
+                            <td>100% if scammed <span class="cross">❌</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Milestone Control</strong></td>
+                            <td class="gtl-column">Built-in <span class="check">✓</span></td>
+                            <td>Complex paperwork <span class="slow">⏰</span></td>
+                            <td>None <span class="cross">❌</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dispute Resolution</strong></td>
+                            <td class="gtl-column">Automated + Manual <span class="check">✓</span></td>
+                            <td>Legal process <span class="slow">⏰</span></td>
+                            <td>Good luck <span class="cross">❌</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scalability</strong></td>
+                            <td class="gtl-column">Unlimited <span class="check">✓</span></td>
+                            <td>Manual approval <span class="slow">⏰</span></td>
+                            <td>Until you get burned <span class="cross">❌</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security">
+        <div class="container">
+            <h2>Security & Trust</h2>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">🔒</div>
+                    <h3>Non-Custodial</h3>
+                    <p>Smart contracts hold funds. We can't access your money.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">⛓️</div>
+                    <h3>Blockchain Secured</h3>
+                    <p>Transactions recorded on immutable public ledger.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🛡️</div>
+                    <h3>No Single Point of Failure</h3>
+                    <p>Decentralized system continues working 24/7.</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">⚡</div>
+                    <h3>Instant Settlements</h3>
+                    <p>Funds released immediately when conditions are met.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">"Working with GTL Labs' escrow system has streamlined our fruit procurement process. As someone who sources and processes fruit for dehydration, having milestone-based payments gives me confidence that our Colombian suppliers get paid fairly and on time when they deliver quality product."</div>
+                    <div class="testimonial-author">— Alexandra Balbuena, Procurement Associate</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">"GTL Labs cut our payment processing time from 5 days to 5 minutes. Our Colombian suppliers love getting paid instantly instead of waiting for bank transfers."</div>
+                    <div class="testimonial-author">— Miguel Rodriguez, Agricultural Coordinator</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Get Your Project Quote</h2>
+            <p>Tell us about your project via email. We'll respond within 24 hours with a custom quote and next steps.</p>
+            <div class="cta-buttons">
+                <button onclick="window.open('mailto:gtlowe@hotmail.com?subject=Project Quote Request&body=Hi! I am interested in escrow services for my business.', '_blank')" class="btn-primary">📧 Get Project Quote</button>
+                <a href="javascript:void(0)" onclick="document.getElementById('demos').scrollIntoView({behavior: 'smooth'})" class="btn-secondary">🚀 Try Demos First</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 GTL Labs. Secure escrow for real-world trade.</p>
+        </div>
+    </footer>
 </body>
 </html>
 
